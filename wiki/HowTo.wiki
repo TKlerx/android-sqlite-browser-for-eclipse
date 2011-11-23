@@ -1,5 +1,7 @@
 #summary HowTo Install the plugin
 = HowTo Install=
 
-Place the jar in "[eclipse-folder]/plugins" and restart eclipse.
-You will find a new Button in the DDMS-View.
+Download the jar file from [https://code.google.com/p/android-sqlite-browser-for-eclipse/downloads/list].
+
+Place the jar in "`[eclipse-folder`]/plugins" and restart eclipse.
+You will find a new Button in the DDMS-View where you can load the sqlite database from your android app.
