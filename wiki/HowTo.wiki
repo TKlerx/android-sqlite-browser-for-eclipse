@@ -1,0 +1,5 @@
+#summary HowTo Install the plugin
+= HowTo Install=
+
+Place the jar in "[eclipse-folder]/plugins" and restart eclipse.
+You will find a new Button in the DDMS-View.
