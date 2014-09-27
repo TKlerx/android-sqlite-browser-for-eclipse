@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: AndroidSQLiteBrowser
 Bundle-SymbolicName: AndroidSQLiteBrowser;singleton:=true
-Bundle-Version: 1.0.1
+Bundle-Version: 1.0
 Bundle-Activator: com.questoid.sqlitebrowser.SqliteBrowserPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -18,5 +18,4 @@ Import-Package: com.android.ddmuilib,
  com.android.ide.eclipse.ddms.preferences,
  com.android.ide.eclipse.ddms.views
 Bundle-ClassPath: .,
- lib/sqljet-1.0.7.jar,
- lib/antlr-runtime-3.5.jar
+ lib/sqljet-1.0.7.jar
