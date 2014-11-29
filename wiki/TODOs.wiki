@@ -8,6 +8,4 @@ work to be done
 
 * create view to fire arbitrary sqls
 
-* "refresh database" button
-
 * push database to the android device (if possible)
