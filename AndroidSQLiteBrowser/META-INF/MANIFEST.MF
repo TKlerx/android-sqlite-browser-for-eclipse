@@ -3,20 +3,44 @@ Bundle-ManifestVersion: 2
 Bundle-Name: AndroidSQLiteBrowser
 Bundle-SymbolicName: AndroidSQLiteBrowser;singleton:=true
 Bundle-Version: 1.0.1
+Bundle-ClassPath: .,
+ lib/sqljet-1.0.7.jar,
+ lib/antlr-runtime-3.5.jar,
+ lib/sqlitejdbc-v056.jar
 Bundle-Activator: com.questoid.sqlitebrowser.SqliteBrowserPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.ui.console,
- org.eclipse.core.resources,
- org.eclipse.ui.ide,
- org.eclipse.core.filesystem,
  com.android.ide.eclipse.ddms
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-ActivationPolicy: lazy
-Import-Package: com.android.ddmuilib,
- com.android.ide.eclipse.ddms,
- com.android.ide.eclipse.ddms.preferences,
+Import-Package: com.android.ide.eclipse.ddms,
  com.android.ide.eclipse.ddms.views
-Bundle-ClassPath: .,
- lib/sqljet-1.0.7.jar,
- lib/antlr-runtime-3.5.jar
+Bundle-ActivationPolicy: lazy
+Export-Package: com.questelement.api.reflection,
+ com.questoid.sqlitebrowser,
+ com.questoid.sqlitebrowser.data,
+ com.questoid.sqlitebrowser.schema,
+ com.questoid.sqlitebrowser.util,
+ com.questoid.sqlitebrowser.view,
+ org.antlr.runtime,
+ org.antlr.runtime.debug,
+ org.antlr.runtime.misc,
+ org.antlr.runtime.tree,
+ org.ibex.nestedvm,
+ org.ibex.nestedvm.util,
+ org.sqlite,
+ org.tmatesoft.sqljet.core,
+ org.tmatesoft.sqljet.core.internal;x-internal:=true,
+ org.tmatesoft.sqljet.core.internal.btree;x-internal:=true,
+ org.tmatesoft.sqljet.core.internal.db;x-internal:=true,
+ org.tmatesoft.sqljet.core.internal.fs;x-internal:=true,
+ org.tmatesoft.sqljet.core.internal.fs.util;x-internal:=true,
+ org.tmatesoft.sqljet.core.internal.lang;x-internal:=true,
+ org.tmatesoft.sqljet.core.internal.memory;x-internal:=true,
+ org.tmatesoft.sqljet.core.internal.mutex;x-internal:=true,
+ org.tmatesoft.sqljet.core.internal.pager;x-internal:=true,
+ org.tmatesoft.sqljet.core.internal.schema;x-internal:=true,
+ org.tmatesoft.sqljet.core.internal.table;x-internal:=true,
+ org.tmatesoft.sqljet.core.internal.vdbe;x-internal:=true,
+ org.tmatesoft.sqljet.core.schema,
+ org.tmatesoft.sqljet.core.table
+

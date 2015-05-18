@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
+
 <plugin>   
    <extension point="org.eclipse.ui.startup">
      <startup class="com.questoid.sqlitebrowser.SqliteBrowserPluginStartup"/>
    </extension>
    
    <extension point="org.eclipse.ui.views">
-        <view id="com.questoid.sqlitebrowser.view.sqliteBrowserView"
-            name="Questoid SQLite Browser"
-          	class="com.questoid.sqlitebrowser.view.SqliteBrowserView"
-            icon="icons\sqlitebrowser.gif"/>
+        <view
+              allowMultiple="false"
+              class="com.questoid.sqlitebrowser.view.SqliteBrowserView"
+              icon="icons\sqlitebrowser.gif"
+              id="com.questoid.sqlitebrowser.view.sqliteBrowserView"
+              name="SQLite Browser"/>
    </extension>
-   
-
 </plugin>
