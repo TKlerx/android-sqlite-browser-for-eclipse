@@ -14,19 +14,17 @@ package com.questoid.sqlitebrowser.schema;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.tmatesoft.sqljet.core.schema.ISqlJetColumnConstraint;
-import org.tmatesoft.sqljet.core.schema.ISqlJetColumnDef;
-import org.tmatesoft.sqljet.core.schema.ISqlJetIndexDef;
-import org.tmatesoft.sqljet.core.schema.ISqlJetTableDef;
+import de.timok.sqlitewrappers.ColumnDef;
+import de.timok.sqlitewrappers.TableDef;
 
 class SchemaTreeNode {
     
-    private String name;
-    private String objectType;
-    private String type;
-    private String schema;
+    private final String name;
+    private final String objectType;
+    private final String type;
+    private final String schema;
 
-    private List<SchemaTreeNode> children = new ArrayList<SchemaTreeNode>();
+    private final List<SchemaTreeNode> children = new ArrayList<SchemaTreeNode>();
 
     SchemaTreeNode() {
         name = "<root>";
@@ -35,43 +33,40 @@ class SchemaTreeNode {
         schema = "";
     }
 
-    SchemaTreeNode(ISqlJetTableDef table) {
+	SchemaTreeNode(final TableDef table) {
         name = table.getName();
         objectType = "table";
         type = "";
-        schema = table.toSQL();
+		// schema = table.toSQL();
+		schema = "";
     }
 
-    SchemaTreeNode(ISqlJetIndexDef index) {
-        name = index.getName();
-        objectType = "index";
-        type = "";
-        schema = index.toSQL();
-    }
+	// SchemaTreeNode(final IndexDef index) {
+	// name = index.getName();
+	// objectType = "index";
+	// type = "";
+	// schema = index.toSQL();
+	// }
 
-    SchemaTreeNode(ISqlJetTableDef table, ISqlJetColumnDef column) {
+	SchemaTreeNode(final TableDef table, final ColumnDef column) {
         name = column.getName();
         objectType = "field";
-        List<String> names = column.getType() == null ? new ArrayList<String>() : column.getType().getNames();
-        List<ISqlJetColumnConstraint> constraints = column.getConstraints();
-        StringBuffer typeStringBuffer = new StringBuffer();
-        for (String name : names) {
-            if (typeStringBuffer.length() > 0) {
-                typeStringBuffer.append(' ');
-            }
-            typeStringBuffer.append(name);
-        }
-        for (ISqlJetColumnConstraint constraint : constraints) {
-            if (typeStringBuffer.length() > 0) {
-                typeStringBuffer.append(' ');
-            }
-            typeStringBuffer.append(constraint.toString());
-        }
-        type = typeStringBuffer.toString();
+		// final List<String> names = column.getType() == -1 ? new
+		// ArrayList<String>() : column.getType();
+		// final List<ISqlJetColumnConstraint> constraints =
+		// column.getConstraints();
+		// final StringBuffer typeStringBuffer = new StringBuffer();
+		// for (final String name : names) {
+		// if (typeStringBuffer.length() > 0) {
+		// typeStringBuffer.append(' ');
+		// }
+		// typeStringBuffer.append(name);
+		// }
+		type = Integer.toString(column.getType());
         schema = "";
     }
     
-    public void addChild(SchemaTreeNode child) {
+    public void addChild(final SchemaTreeNode child) {
         children.add(child);
     }
     
@@ -83,11 +78,11 @@ class SchemaTreeNode {
         return children.size() == 0;
     }
     
-    public SchemaTreeNode getChildAt(int index) {
+    public SchemaTreeNode getChildAt(final int index) {
         return children.get(index);
     }
     
-    public int getIndexOfChild(SchemaTreeNode child) {
+    public int getIndexOfChild(final SchemaTreeNode child) {
         return children.indexOf(child);
     }
     
@@ -107,7 +102,8 @@ class SchemaTreeNode {
         return schema;
     }
     
-    public String toString() {
+    @Override
+	public String toString() {
         return getName();
     }
 

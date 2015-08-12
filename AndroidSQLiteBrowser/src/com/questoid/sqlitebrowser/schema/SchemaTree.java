@@ -11,59 +11,60 @@
  */
 package com.questoid.sqlitebrowser.schema;
 
+import java.io.File;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
-import org.tmatesoft.sqljet.core.SqlJetException;
-import org.tmatesoft.sqljet.core.schema.ISqlJetColumnDef;
-import org.tmatesoft.sqljet.core.schema.ISqlJetIndexDef;
-import org.tmatesoft.sqljet.core.schema.ISqlJetSchema;
-import org.tmatesoft.sqljet.core.schema.ISqlJetTableDef;
+import de.timok.sqlitewrappers.ColumnDef;
+import de.timok.sqlitewrappers.JdbcHelper;
+import de.timok.sqlitewrappers.TableDef;
 
 public class SchemaTree{
-    private Object root;   
+    private final Object root;   
     
-    public static SchemaTree createInstance(ISqlJetSchema schema) throws SqlJetException {
+	public static SchemaTree createInstance(final File dbFile) throws SQLException {
         SchemaTreeNode root = new SchemaTreeNode();
-        if (schema == null) {
+		if (dbFile == null || !dbFile.exists()) {
             return new SchemaTree(root);
         }
         try {
-            Set<String> tableNames = schema.getTableNames();
-            for (String tableName : tableNames) {
-                ISqlJetTableDef table = schema.getTable(tableName);
-                SchemaTreeNode node = new SchemaTreeNode(table);                
-                List<ISqlJetColumnDef> columns = table.getColumns();
-                for (ISqlJetColumnDef column : columns) {
-                    node.addChild(new SchemaTreeNode(table, column));
+			final List<String> tableNames = JdbcHelper.getTableNames(dbFile);
+			for (final String tableName : tableNames) {
+				final TableDef table = new TableDef(tableName);
+				final SchemaTreeNode node = new SchemaTreeNode(table);
+
+				final List<ColumnDef> columns = JdbcHelper.getColumnNames(dbFile, tableName);
+				for (final ColumnDef columnDef : columns) {
+					node.addChild(new SchemaTreeNode(table, columnDef));
                 }
                 root.addChild(node);
             }
-            Set<String> indexNames = schema.getIndexNames();
-            for (String indexName : indexNames) {
-                ISqlJetIndexDef index = schema.getIndex(indexName);
-                root.addChild(new SchemaTreeNode(index));
-            }
-        } catch (SqlJetException e) {
+			// final Set<String> indexNames = schema.getIndexNames();
+			// for (final String indexName : indexNames) {
+			// final ISqlJetIndexDef index = schema.getIndex(indexName);
+			// root.addChild(new SchemaTreeNode(index));
+			// }
+		} catch (final SQLException e) {
             root = new SchemaTreeNode();
             throw e;
         }
         return new SchemaTree(root);
     }
 
-    private SchemaTree(SchemaTreeNode root) {
+
+	private SchemaTree(final SchemaTreeNode root) {
         this.root = root;
     }
     
-    public int getChildCount(Object parent) {
+    public int getChildCount(final Object parent) {
         return ((SchemaTreeNode) parent).getChildCount();
     }
     
-    public int getIndexOfChild(Object parent, Object child) {
+    public int getIndexOfChild(final Object parent, final Object child) {
         return ((SchemaTreeNode) parent).getIndexOfChild((SchemaTreeNode) child);
     }
 
-    public Object getChild(Object parent, int index) {
+    public Object getChild(final Object parent, final int index) {
         return ((SchemaTreeNode) parent).getChildAt(index);
     }
     
@@ -71,7 +72,7 @@ public class SchemaTree{
         return root;
     }
     
-    public boolean isLeaf(Object node) { 
+    public boolean isLeaf(final Object node) { 
         return ((SchemaTreeNode) node).isLeaf(); 
     } 
     

@@ -2,11 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: AndroidSQLiteBrowser
 Bundle-SymbolicName: AndroidSQLiteBrowser;singleton:=true
-Bundle-Version: 1.0.1
+Bundle-Version: 1.0.2
 Bundle-ClassPath: .,
- lib/sqljet-1.0.7.jar,
  lib/antlr-runtime-3.5.jar,
- lib/sqlitejdbc-v056.jar
+ lib/sqlite-jdbc-3.8.11.1.jar
 Bundle-Activator: com.questoid.sqlitebrowser.SqliteBrowserPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -16,31 +15,29 @@ Import-Package: com.android.ide.eclipse.ddms,
  com.android.ide.eclipse.ddms.views
 Bundle-ActivationPolicy: lazy
 Export-Package: com.questelement.api.reflection,
- com.questoid.sqlitebrowser,
- com.questoid.sqlitebrowser.data,
- com.questoid.sqlitebrowser.schema,
- com.questoid.sqlitebrowser.util,
- com.questoid.sqlitebrowser.view,
- org.antlr.runtime,
- org.antlr.runtime.debug,
+ com.questoid.sqlitebrowser;
+  uses:="org.osgi.framework,
+   org.eclipse.ui,
+   org.eclipse.jface.resource,
+   org.eclipse.ui.plugin",
+ com.questoid.sqlitebrowser.data;uses:="org.eclipse.swt.graphics,org.eclipse.jface.viewers",
+ com.questoid.sqlitebrowser.schema;uses:="org.eclipse.swt.graphics,org.eclipse.jface.viewers",
+ com.questoid.sqlitebrowser.util;uses:="com.android.ddmlib,com.android.ddmuilib.explorer",
+ com.questoid.sqlitebrowser.view;
+  uses:="com.android.ddmlib,
+   org.eclipse.swt.widgets,
+   com.android.ddmuilib.explorer,
+   org.eclipse.ui.part",
+ de.timok.sqlitewrappers,
+ org.antlr.runtime;uses:="org.antlr.runtime.tree,org.antlr.runtime.misc",
+ org.antlr.runtime.debug;uses:="org.antlr.runtime.tree,org.antlr.runtime.misc,org.antlr.runtime",
  org.antlr.runtime.misc,
- org.antlr.runtime.tree,
- org.ibex.nestedvm,
- org.ibex.nestedvm.util,
- org.sqlite,
- org.tmatesoft.sqljet.core,
- org.tmatesoft.sqljet.core.internal;x-internal:=true,
- org.tmatesoft.sqljet.core.internal.btree;x-internal:=true,
- org.tmatesoft.sqljet.core.internal.db;x-internal:=true,
- org.tmatesoft.sqljet.core.internal.fs;x-internal:=true,
- org.tmatesoft.sqljet.core.internal.fs.util;x-internal:=true,
- org.tmatesoft.sqljet.core.internal.lang;x-internal:=true,
- org.tmatesoft.sqljet.core.internal.memory;x-internal:=true,
- org.tmatesoft.sqljet.core.internal.mutex;x-internal:=true,
- org.tmatesoft.sqljet.core.internal.pager;x-internal:=true,
- org.tmatesoft.sqljet.core.internal.schema;x-internal:=true,
- org.tmatesoft.sqljet.core.internal.table;x-internal:=true,
- org.tmatesoft.sqljet.core.internal.vdbe;x-internal:=true,
- org.tmatesoft.sqljet.core.schema,
- org.tmatesoft.sqljet.core.table
+ org.antlr.runtime.tree;uses:="org.antlr.stringtemplate,org.antlr.runtime.misc,org.antlr.runtime",
+ org.sqlite;uses:="org.ibex.nestedvm",
+ org.sqlite.core,
+ org.sqlite.date,
+ org.sqlite.javax,
+ org.sqlite.jdbc3,
+ org.sqlite.jdbc4,
+ org.sqlite.util
 

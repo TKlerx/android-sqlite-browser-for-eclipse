@@ -11,23 +11,20 @@
  */
 package com.questoid.sqlitebrowser.data;
 
-import org.tmatesoft.sqljet.core.SqlJetException;
-
-import org.tmatesoft.sqljet.core.table.ISqlJetCursor;
-
 public class DataRow {
-    private Object[] data;
-    private long rowId;
+    private final Object[] data;
+    private final long rowId;
     
-    public static DataRow read(ISqlJetCursor cursor, long index, String[] names) throws SqlJetException {
-        Object[] data = new Object[names.length];
-        for(int i = 0; i < names.length; i++) {
-            data[i] = cursor.getValue(names[i]);
-        }
-        return new DataRow(data, index);
-    }
+	// public static DataRow read(final ISqlJetCursor cursor, final long index,
+	// final String[] names) throws SqlJetException {
+	// final Object[] data = new Object[names.length];
+	// for(int i = 0; i < names.length; i++) {
+	// data[i] = cursor.getValue(names[i]);
+	// }
+	// return new DataRow(data, index);
+	// }
     
-    private DataRow(Object[] data, long rowId) {
+	public DataRow(final Object[] data, final long rowId) {
         this.data = data;
         this.rowId = rowId;
     }
@@ -36,7 +33,7 @@ public class DataRow {
         return data.length;
     }
     
-    public Object getValueAt(int field) {
+    public Object getValueAt(final int field) {
         return data[field];
     }
     
