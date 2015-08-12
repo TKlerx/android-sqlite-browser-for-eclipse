@@ -224,7 +224,7 @@ public class SqliteBrowserView extends ViewPart {
 			while (rs.next()) {
 				final Object[] row = new Object[rsMeta.getColumnCount()];
 				for (int i = 0; i < rsMeta.getColumnCount(); i++) {
-					row[i] = rs.getString(i);
+					row[i] = rs.getString(i+1);
 				}
 				data.add(new DataRow(row, rowId));
 				rowId++;
