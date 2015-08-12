@@ -10,7 +10,7 @@ Bundle-Activator: com.questoid.sqlitebrowser.SqliteBrowserPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  com.android.ide.eclipse.ddms
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: com.android.ide.eclipse.ddms,
  com.android.ide.eclipse.ddms.views
 Bundle-ActivationPolicy: lazy
